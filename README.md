@@ -14,6 +14,7 @@ Give databases your own names.
 	rails new demo-template-rails --skip-test-unit
 	cd demo-template-rails
 
+Runned:
 
 	git init
 
@@ -23,24 +24,25 @@ Inserted into .gitignore:
 	*.sublime-project
 	*.sublime-workspace
 
+Runned:
 
 	git add . ; git commit -m "Initial commit"
 
 
 ## Installed sugars
 
-In development.rb:
+Into development.rb:
 
 	config.sass.preferred_syntax = :sass
 
 
-In config.rb:
+Into config.rb:
 
 	preferred_syntax = :sass
 	# CSS output style - :nested, :expanded, :compact, or :compressed
 	output_style = :compressed
 
-In gemfile:
+Into gemfile:
 
 	gem 'haml-rails'
 
@@ -48,5 +50,29 @@ In gemfile:
 	  gem 'compass-rails'
 	end
 
+Runned:
 
 	bundle
+
+## Installed Twitter Bootstrap
+
+Into gemfile:
+
+	group :assets do
+	  gem 'compass_twitter_bootstrap'
+	end
+
+Runned:
+
+	bundle
+
+Into application.html.erb:
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+Created `custom.css.sass`. Filled it with:
+
+	@import "bootstrap"
+	@import "bootstrap-responsive"
+
+And insert into application.css
