@@ -75,4 +75,25 @@ Created `custom.css.sass`. Filled it with:
 	@import "bootstrap"
 	@import "bootstrap-responsive"
 
-And insert into application.css
+And insert into application.css (with `*= require_tree .` deleting):
+
+	 *= require 'custom'
+
+## Changed templates and layouts
+
+Deleted standard Rails index template.
+
+Changed application layout into haml:
+
+	!!!
+	%html
+	  %head
+	    %title CmsFromTheFuture
+	    = stylesheet_link_tag    "application", :media => "all"
+	    = javascript_include_tag "application"
+	    = csrf_meta_tags
+	    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
+	  %body
+	    = yield
+
+
