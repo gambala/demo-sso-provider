@@ -4,8 +4,13 @@
 
 Give databases your own names.
 
+## Install figaro .yml-file
 
+	rails generate figaro:install
 
+If using Heroku for deployment:
+
+	rake figaro:heroku
 
 # Changelogs
 
@@ -96,4 +101,9 @@ Changed application layout into haml:
 	  %body
 	    = yield
 
+## Installed figaro gem
+
+	gem "figaro"
+	bundle install
+	rails generate figaro:install
 
