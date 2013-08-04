@@ -1,6 +1,9 @@
 DemoTemplateRails::Application.routes.draw do
 
   get '/login' => 'authentications#login'
+  get '/logout', :to => 'authentications#logout'
+  match '/auth/:provider/callback', :to => 'authentications#callback'
+  match '/auth/failure', :to => 'authentications#failure'
 
   root to: 'accounts#index'
 

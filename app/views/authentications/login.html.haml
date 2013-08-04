@@ -1,1 +1,6 @@
 %p Вы можете войти в систему, используя один из предложенных сервисов:
+
+- @unlinkedProviders.each do |provider|
+	%a.auth-square-button{href: '/auth/'+provider, class: I18n.t('provider.button-class.'+provider), title: 'Войти с помощью сервиса'}
+		%i.icon-4x{class: I18n.t('provider.icon.'+provider)}
+		= I18n.t('provider.name.'+provider)
