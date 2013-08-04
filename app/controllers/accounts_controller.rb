@@ -5,6 +5,10 @@ class AccountsController < ApplicationController
 		@account = Account.find(session[:account_id])
 	end
 
+	def edit
+		@account = Account.find(session[:account_id])
+	end
+
 	def update
 		@account = Account.find(session[:account_id])
 		data_hash = Psych.load params[:info]
@@ -20,7 +24,7 @@ class AccountsController < ApplicationController
 
 	def check_authentication
 		if !session[:account_id]
-			redirect_to login_path, notice: t('login.purpose')
+			redirect_to auth_path, notice: t('login.purpose')
 		end
 	end
 end

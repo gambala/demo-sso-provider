@@ -5,8 +5,9 @@ DemoTemplateRails::Application.routes.draw do
   match '/auth/:provider/callback', to: 'authentications#callback'
   match '/auth/failure', to: 'authentications#failure'
 
-  match '/account/update', to: 'accounts#update'
   match '/account', to: 'accounts#index'
+  match '/account/edit', to: 'accounts#edit'
+  match '/account/update', to: 'accounts#update'
 
   root to: 'accounts#index'
 

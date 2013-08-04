@@ -4,7 +4,7 @@ class AuthenticationsController < ApplicationController
 	end
 	def logout
 		session[:account_id] = nil
-		redirect_to login_path, flash: {success: t('logout.success')}
+		redirect_to auth_path, flash: {success: t('logout.success')}
 	end
 	def callback
 		auth_hash = request.env['omniauth.auth']
@@ -52,7 +52,7 @@ class AuthenticationsController < ApplicationController
 		end
 	end
 	def failure
-		redirect_to login_path, flash: {error: t('login.failure')}
+		redirect_to auth_path, flash: {error: t('login.failure')}
 	end
 
 	private
