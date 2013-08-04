@@ -1,5 +1,6 @@
 DemoTemplateRails::Application.routes.draw do
-  # resources :accounts
+
+  get '/login' => 'authentications#login'
 
   root to: 'accounts#index'
 
