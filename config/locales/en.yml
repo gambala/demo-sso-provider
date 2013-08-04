@@ -18,6 +18,11 @@ en:
         yandex: Yandex
         google_oauth2: Google
     logout: 'Log out'
+    detach: 'Detach service'
+    detached:
+        success: 'Service was successfully detached'
+        failure: 'You are not be able to detach this service'
+        noparam: 'Service id error'
   account:
     editing: 'Account editing'
     show: 'Show account'

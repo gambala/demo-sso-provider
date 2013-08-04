@@ -1,4 +1,6 @@
 class AuthenticationsController < ApplicationController
+	before_filter :check_authentication, :only => [:detach]
+
 	def auth
 		@unlinkedProviders = ['facebook', 'vkontakte', 'twitter', 'yandex', 'google_oauth2']
 	end
@@ -53,6 +55,20 @@ class AuthenticationsController < ApplicationController
 	end
 	def failure
 		redirect_to auth_path, flash: {error: t('login.failure')}
+	end
+	def detach
+		if params[:auth_id]
+			authentication = Authentication.find_by_provider(params[:auth_id])
+			if authentication.account_id == session['account_id']
+				authentication.account = nil
+				authentication.destroy
+				redirect_to root_path, notice: t('auth.detached.success')
+			else
+				redirect_to root_path, error: t('auth.detached.failure')
+			end
+		else
+			redirect_to root_path, error: t('auth.detached.noparam')
+		end
 	end
 
 	private

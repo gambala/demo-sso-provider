@@ -24,12 +24,4 @@ class AccountsController < ApplicationController
 			redirect_to account_path, flash: {error: t('account.not_updated')}
 		end
 	end
-
-	protected
-
-	def check_authentication
-		if !session[:account_id]
-			redirect_to auth_path, notice: t('login.purpose')
-		end
-	end
 end

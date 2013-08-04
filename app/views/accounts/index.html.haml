@@ -7,10 +7,12 @@
 		%hr
 		.center
 			%h4= t('account.services.attached')
-			%p
-				- @account.authentications.each do |authentication|
+			- @account.authentications.each do |authentication|
+				%p
 					%a.btn{href: '/auth/'+authentication.provider, title: t('account.update')}
 						= I18n.t('auth.provider.name.'+authentication.provider)
+					%a.btn.btn-link{href: '/auth/detach?auth_id='+authentication.provider}
+						= t('auth.detach')
 			%p
 				%a.btn{href: auth_path}
 					= t('account.manage_authentications')

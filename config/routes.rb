@@ -4,6 +4,7 @@ DemoTemplateRails::Application.routes.draw do
   get '/logout', to: 'authentications#logout'
   match '/auth/:provider/callback', to: 'authentications#callback'
   match '/auth/failure', to: 'authentications#failure'
+  match '/auth/detach', to: 'authentications#detach'
 
   match '/account', to: 'accounts#index'
   match '/account/edit', to: 'accounts#edit'
