@@ -11,8 +11,9 @@ class AccountsController < ApplicationController
 
 	def update
 		@account = Account.find(session[:account_id])
+		# Checked hidden field and select, from what field save info
 		if params[:update_from_json] == 'true'
-			data_hash = JSON.parse(params[:json])
+			data_hash = JSON.parse(params[:info_json])
 		else
 			data_hash = Psych.load params[:info]
 		end
