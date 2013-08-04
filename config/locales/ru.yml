@@ -12,12 +12,16 @@ ru:
   auth:
     provider:
       name:
-        facebook: Фейсбук
-        vkontakte: Вконтакте
-        twitter: Твиттер
-        yandex: Яндекс
-        google_oauth2: Гугл
+        facebook: 'Фейсбук'
+        vkontakte: 'Вконтакте'
+        twitter: 'Твиттер'
+        yandex: 'Яндекс'
+        google_oauth2: 'Гугл'
+    logout: 'Выйти из системы'
   account:
+    editing: 'Редактирование аккаунта'
+    show: 'Показать аккаунт'
+    update: 'Обновить данные аккаунта'
     updated: 'Данные вашего аккаунта были успешно изменены'
     not_updated: 'Данные вашего аккаунта не были изменены'
     data_refreshed: 'Данные вашего Аккаунта обновлены'
@@ -25,3 +29,8 @@ ru:
     authentication_added: 'К вашему Аккаунту привязан новый сервис'
     logged_again: 'С возвращением!'
     logged_first: 'Здравствуйте, вы успешно зашли в систему'
+    services:
+      attached: 'Cервисы, привязанные к вашему аккаунту'
+    manage_authentications: 'Перейти на страницу управления привязками'
+    edit_info: 'Редактировать данные анкеты'
+    showed: 'Ваш аккаунт'

@@ -17,7 +17,11 @@ en:
         twitter: Twitter
         yandex: Yandex
         google_oauth2: Google
+    logout: 'Log out'
   account:
+    editing: 'Account editing'
+    show: 'Show account'
+    update: 'Update info data'
     updated: 'Account info was successfully updated'
     not_updated: "Account info wasn't successfully updated"
     data_refreshed: "Your account's info data has successfully updated"
@@ -25,3 +29,8 @@ en:
     authentication_added: 'Authentication service has successfully added to your account'
     logged_again: 'Welcome back!'
     logged_first: 'Hi, you have successfully logged in'
+    services:
+      attached: 'Services merged to your account'
+    manage_authentications: 'Manage services merging'
+    edit_info: 'Edit account info'
+    showed: 'Your account'

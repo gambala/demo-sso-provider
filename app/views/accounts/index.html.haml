@@ -3,25 +3,25 @@
 
 		%ul.nav.nav-pills.nav-stacked
 			%li
-				%a{href: logout_path} Выйти из системы
+				%a{href: logout_path}= t('auth.logout')
 		%hr
 		.center
-			%h4 Cервисы, привязанные к вашему Аккаунту
+			%h4= t('account.services.attached')
 			%p
 				- @account.authentications.each do |authentication|
-					%a.btn{href: '/auth/'+authentication.provider, title: 'Обновить информацию Аккаунта'}
+					%a.btn{href: '/auth/'+authentication.provider, title: t('account.update')}
 						= I18n.t('auth.provider.name.'+authentication.provider)
 			%p
 				%a.btn{href: auth_path}
-					Перейти на страницу управления привязками
+					= t('account.manage_authentications')
 
 	.span8
 		.well
 			.pull-right
 				%p
 					%a.btn{href: account_edit_path}
-						Edit account info
-			%h3 Ваш Аккаунт
+						= t('account.edit_info')
+			%h3= t('account.showed')
 			- @account.info.each do |key, values|
 				%p
 					%b= t('field.'+key)

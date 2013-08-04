@@ -1,8 +1,8 @@
 .pull-right
 	%p
 		%a.btn{href: account_path}
-			Show account
-%h3 Редактирование аккаунта
+			= t('account.show')
+%h3= t('account.editing')
 
 = form_tag account_update_path, method: :post, multipart: true do
 
@@ -13,4 +13,4 @@
 	= hidden_field_tag :update_from_json, false
 	#jsoneditor
 
-	= submit_tag 'Update info data'
+	= submit_tag t('account.update')
