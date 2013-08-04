@@ -2,4 +2,18 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+  login:
+    link: 'Log in with this service'
+    propose: 'You may log in with one of this services'
+    purpose: 'You need to log in with one of this services'
+    failure: 'Sorry, but there is an error occurred on service side. Please try another service.'
+  logout:
+    success: 'You are successfully logout'
+  auth:
+    provider:
+      name:
+        facebook: Facebook
+        vkontakte: VK
+        twitter: Twitter
+        yandex: Yandex
+        google_oauth2: Google

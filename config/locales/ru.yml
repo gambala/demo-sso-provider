@@ -1,0 +1,19 @@
+# Sample localization file for Russian. Add more files in this directory for other locales.
+# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+ru:
+  login:
+    link: 'Войти с помощью сервиса'
+    propose: 'Вы можете войти в систему, используя один из предложенных сервисов'
+    purpose: 'Вам необходимо войти в систему, используя один из вариантов'
+    failure: 'Извините, но на стороне сервиса произошла непредвиденная ошибка. Попробуйте использовать другой сервис.'
+  logout:
+    success: 'Вы успешно вышли из системы'
+  auth:
+    provider:
+      name:
+        facebook: Фейсбук
+        vkontakte: Вконтакте
+        twitter: Твиттер
+        yandex: Яндекс
+        google_oauth2: Гугл
