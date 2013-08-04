@@ -1,5 +1,15 @@
 .center
-	%p= t('login.propose')
+	- if session[:account_id]
+		%p
+			%a.btn{href: root_path}= t('login.return_to_account')
+		%p= t('login.linked_accounts')
+		- @linkedProviders.each do |provider|
+			%p
+				%a.btn{href: '/auth/'+provider, title: t('account.update')}
+					= I18n.t('auth.provider.name.'+provider)
+		%p= t('login.propose.with_linked')
+	- else
+		%p= t('login.propose.without_linked')
 
 	- @unlinkedProviders.each do |provider|
 		%p

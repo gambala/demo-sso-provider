@@ -3,6 +3,15 @@ class AuthenticationsController < ApplicationController
 
 	def auth
 		@unlinkedProviders = ['facebook', 'vkontakte', 'twitter', 'yandex', 'google_oauth2']
+		if session[:account_id]
+			# Formed array of providers unlinked with current account
+			authentications = Account.find(session[:account_id]).authentications
+			@linkedProviders = Array.new
+			authentications.each do |authentication|
+				@linkedProviders << authentication.provider
+			end
+			@unlinkedProviders = @unlinkedProviders - @linkedProviders
+		end
 	end
 	def logout
 		session[:account_id] = nil
