@@ -7,12 +7,13 @@ class AccountsController < ApplicationController
 
 	def update
 		@account = Account.find(session[:account_id])
+		data_hash = Psych.load params[:info]
 
-		# if @account.update_attributes(params[:account])
-		# 	format.html { redirect_to account_path, notice: 'Application was successfully updated.' }
-		# else
-		# 	format.html { render action: "index" }
-		# end
+		if @account.update_attributes(info: data_hash)
+			redirect_to account_path, notice: t('account.updated')
+		else
+			redirect_to account_path, flash: {error: t('account.not_updated')}
+		end
 	end
 
 	protected

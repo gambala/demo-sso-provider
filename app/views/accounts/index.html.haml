@@ -19,34 +19,32 @@
 		.well
 			.center
 				%h3 Ваш Аккаунт
-			- @account.info.each do |key, values|
-				%p
-					%b= t('field.'+key)
+			/ - @account.info.each do |key, values|
+			/ 	%p
+			/ 		%b= t('field.'+key)
 
-					- if key == 'image'
-						- if values.kind_of?(Array)
-							- values.each do |value|
-								%img.thumbnail{src: value}
-						- else
-							%img{src: values}
-					- else
-						- if key == 'urls'
-							- values.each do |text, href|
-								%a{href: href} #{text}
-						- else
-							- if values.kind_of?(Array)
-								- values.each do |value|
-									.label= value
-							- else
-								.label= values
+			/ 		- if key == 'image'
+			/ 			- if values.kind_of?(Array)
+			/ 				- values.each do |value|
+			/ 					%img.thumbnail{src: value}
+			/ 			- else
+			/ 				%img{src: values}
+			/ 		- else
+			/ 			- if key == 'urls'
+			/ 				- values.each do |text, href|
+			/ 					%a{href: href} #{text}
+			/ 			- else
+			/ 				- if values.kind_of?(Array)
+			/ 					- values.each do |value|
+			/ 						.label= value
+			/ 				- else
+			/ 					.label= values
+
+
+
+
+
 
 			= form_tag account_update_path, method: :post, multipart: true do
-				- @account.info.each do |key, values|
-					%p
-						%b= t('field.'+key)
-						- if values.kind_of?(Array)
-							= text_field_tag key, values.join(' | ')
-						- else
-							= text_field_tag key, values
-
-				= submit_tag 'Save'
+				= text_area_tag :info, @account.info.to_yaml, rows: 20, class: 'input-block-level'
+				= submit_tag 'Update info data'

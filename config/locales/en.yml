@@ -18,6 +18,8 @@ en:
         yandex: Yandex
         google_oauth2: Google
   account:
+    updated: 'Account info was successfully updated'
+    not_updated: "Account info wasn't successfully updated"
     data_refreshed: "Your account's info data has successfully updated"
     merged: 'Your account has successfully merged with other'
     authentication_added: 'Authentication service has successfully added to your account'
