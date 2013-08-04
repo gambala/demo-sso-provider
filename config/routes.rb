@@ -1,12 +1,14 @@
 DemoTemplateRails::Application.routes.draw do
 
   get '/auth' => 'authentications#auth'
-  get '/logout', :to => 'authentications#logout'
-  match '/auth/:provider/callback', :to => 'authentications#callback'
-  match '/auth/failure', :to => 'authentications#failure'
+  get '/logout', to: 'authentications#logout'
+  match '/auth/:provider/callback', to: 'authentications#callback'
+  match '/auth/failure', to: 'authentications#failure'
+
+  match '/account/update', to: 'accounts#update'
+  match '/account', to: 'accounts#index'
 
   root to: 'accounts#index'
-
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -39,3 +39,14 @@
 									.label= value
 							- else
 								.label= values
+
+			= form_tag account_update_path, method: :post, multipart: true do
+				- @account.info.each do |key, values|
+					%p
+						%b= t('field.'+key)
+						- if values.kind_of?(Array)
+							= text_field_tag key, values.join(' | ')
+						- else
+							= text_field_tag key, values
+
+				= submit_tag 'Save'
