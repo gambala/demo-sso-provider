@@ -9,7 +9,47 @@ class AuthenticationsController < ApplicationController
 	def callback
 		auth_hash = request.env['omniauth.auth']
 		data_hash = get_data_hash auth_hash
-		render json: data_hash
+		@authentication = Authentication.find_by_provider_and_uid(auth_hash["provider"], auth_hash["uid"])
+
+		if session[:account_id]
+			current_account = Account.find(session[:account_id])
+
+			if @authentication
+				if @authentication.account.id == current_account.id
+					# Data refreshing
+					current_account.add_info data_hash
+					current_account.save
+					redirect_to root_path, notice: t('account.data_refreshed')
+				else
+					# Accounts merging
+					current_account.add_info @authentication.account.info
+					current_account.add_authentications @authentication.account.authentications
+					@authentication.account.destroy
+					current_account.add_info data_hash
+					current_account.save
+					redirect_to root_path, notice: t('account.merged')
+				end
+			else
+				# Adding additional authentication to current account
+				current_account.add_info data_hash
+				current_account.authentications.build provider: auth_hash["provider"], uid: auth_hash["uid"]
+				current_account.save
+				redirect_to root_path, notice: t('account.authentication_added')
+			end
+		else
+			if @authentication
+				# Second login
+				session[:account_id] = @authentication.account.id
+				redirect_to root_path, notice: t('account.logged_again')
+			else
+				# First login
+				account = Account.new info: data_hash
+				account.authentications.build provider: auth_hash["provider"], uid: auth_hash["uid"]
+				account.save
+				session[:account_id] = account.id
+				redirect_to root_path, notice: t('account.logged_first')
+			end
+		end
 	end
 	def failure
 		redirect_to login_path, flash: {error: t('login.failure')}

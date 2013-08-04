@@ -17,3 +17,9 @@ en:
         twitter: Twitter
         yandex: Yandex
         google_oauth2: Google
+  account:
+    data_refreshed: "Your account's info data has successfully updated"
+    merged: 'Your account has successfully merged with other'
+    authentication_added: 'Authentication service has successfully added to your account'
+    logged_again: 'Welcome back!'
+    logged_first: 'Hi, you have successfully logged in'
