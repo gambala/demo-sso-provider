@@ -11,7 +11,11 @@ class AccountsController < ApplicationController
 
 	def update
 		@account = Account.find(session[:account_id])
-		data_hash = Psych.load params[:info]
+		if params[:update_from_json] == 'true'
+			data_hash = JSON.parse(params[:json])
+		else
+			data_hash = Psych.load params[:info]
+		end
 
 		if @account.update_attributes(info: data_hash)
 			redirect_to account_path, notice: t('account.updated')

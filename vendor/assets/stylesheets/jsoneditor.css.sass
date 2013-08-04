@@ -1,0 +1,416 @@
+.jsoneditor
+  .field, .value, .readonly
+    border: 1px solid transparent
+    min-height: 16px
+    min-width: 32px
+    padding: 2px
+    margin: 1px
+    word-wrap: break-word
+    float: left
+  .field p
+    margin: 0
+  .value
+    p
+      margin: 0
+    word-break: break-word
+  .readonly
+    min-width: 16px
+    color: gray
+  .empty
+    border-color: lightgray
+    border-style: dashed
+    border-radius: 2px
+  .field.empty
+    background-image: url('jsoneditor-icons.png')
+    background-position: 0 -144px
+  .value
+    &.empty
+      background-image: url('jsoneditor-icons.png')
+      background-position: -48px -144px
+    &.url
+      color: green
+      text-decoration: underline
+  a.value.url
+    &:hover, &:focus
+      color: red
+  .separator
+    padding: 3px 0
+    vertical-align: top
+    color: gray
+  .field[contenteditable=true]
+    &:focus, &:hover
+      background-color: #FFFFAB
+      border: 1px solid yellow
+      border-radius: 2px
+  .value[contenteditable=true]
+    &:focus, &:hover
+      background-color: #FFFFAB
+      border: 1px solid yellow
+      border-radius: 2px
+  .field.highlight, .value.highlight
+    background-color: #FFFFAB
+    border: 1px solid yellow
+    border-radius: 2px
+  .field.highlight-active
+    background-color: #ffee00
+    border: 1px solid #ffc700
+    border-radius: 2px
+    &:focus, &:hover
+      background-color: #ffee00
+      border: 1px solid #ffc700
+      border-radius: 2px
+  .value.highlight-active
+    background-color: #ffee00
+    border: 1px solid #ffc700
+    border-radius: 2px
+    &:focus, &:hover
+      background-color: #ffee00
+      border: 1px solid #ffc700
+      border-radius: 2px
+  button
+    width: 24px
+    height: 24px
+    padding: 0
+    margin: 0
+    border: none
+    cursor: pointer
+    background: transparent url('jsoneditor-icons.png')
+    &.collapsed
+      background-position: 0 -48px
+    &.expanded
+      background-position: 0 -72px
+    &.contextmenu
+      background-position: -48px -72px
+      &:hover, &:focus, &.selected
+        background-position: -48px -48px
+  div.content
+    *:focus
+      outline: none
+    button:focus
+      background-color: #f5f5f5
+      outline: #e5e5e5 solid 1px
+  button.invisible
+    visibility: hidden
+    background: none
+
+// adjust margin of p elements inside editable divs, needed for Opera, IE
+
+div.jsoneditor
+  color: #1A1A1A
+  border: 1px solid #97B0F8
+  -moz-box-sizing: border-box
+  -webkit-box-sizing: border-box
+  box-sizing: border-box
+  width: 100%
+  height: 100%
+  overflow: auto
+  position: relative
+  padding: 0
+
+.jsoneditor
+  table.content
+    border-collapse: collapse
+    border-spacing: 0
+    width: 100%
+    margin: 0
+  div
+    &.outer
+      width: 100%
+      height: 100%
+      margin: -35px 0 0 0
+      padding: 35px 0 0 0
+      -moz-box-sizing: border-box
+      -webkit-box-sizing: border-box
+      box-sizing: border-box
+      overflow: hidden
+    &.content
+      width: 100%
+      height: 100%
+      position: relative
+      overflow: auto
+  textarea.content
+    width: 100%
+    height: 100%
+    margin: 0
+    -moz-box-sizing: border-box
+    -webkit-box-sizing: border-box
+    box-sizing: border-box
+    border: none
+    background-color: white
+    resize: none
+  tr.highlight
+    background-color: #FFFFAB
+  button.dragarea
+    background: url('jsoneditor-icons.png') -72px -72px
+    cursor: move
+    &:hover, &:focus
+      background-position: -72px -48px
+  tr, th
+    padding: 0
+    margin: 0
+  td
+    padding: 0
+    margin: 0
+    vertical-align: top
+    &.tree
+      vertical-align: top
+  .field, .value, td, th, textarea
+    font-family: droid sans mono, monospace, courier new, courier, sans-serif
+    font-size: 10pt
+    color: #1A1A1A
+
+// ContextMenu - main menu
+
+.jsoneditor-contextmenu
+  position: absolute
+  ul
+    position: relative
+    left: 0
+    top: 0
+    width: 124px
+    background: white
+    border: 1px solid #d3d3d3
+    box-shadow: 2px 2px 12px rgba(128, 128, 128, 0.3)
+    z-index: 1
+    list-style: none
+    margin: 0
+    padding: 0
+    li button
+      padding: 0
+      margin: 0
+      width: 124px
+      height: 24px
+      border: none
+      cursor: pointer
+      color: #4d4d4d
+      background: transparent
+      line-height: 24px
+      text-align: left
+      &::-moz-focus-inner
+        padding: 0
+        border: 0
+      &:hover, &:focus
+        color: #1a1a1a
+        background-color: #f5f5f5
+        outline: none
+      &.default
+        width: 92px
+      &.expand
+        float: right
+        width: 32px
+        height: 24px
+        border-left: 1px solid #e5e5e5
+  div.icon
+    float: left
+    width: 24px
+    height: 24px
+    border: none
+    padding: 0
+    margin: 0
+    background-image: url('jsoneditor-icons.png')
+  ul li
+    button
+      div.expand
+        float: right
+        width: 24px
+        height: 24px
+        padding: 0
+        margin: 0 4px 0 0
+        background: url('jsoneditor-icons.png') 0 -72px
+        opacity: 0.4
+      &:hover div.expand, &:focus div.expand
+        opacity: 1
+    &.selected div.expand
+      opacity: 1
+    button.expand
+      &:hover div.expand, &:focus div.expand
+        opacity: 1
+  .separator
+    height: 0
+    border-top: 1px solid #e5e5e5
+    padding-top: 5px
+    margin-top: 5px
+  button
+    &.remove
+      > .icon
+        background-position: -24px -24px
+      &:hover > .icon, &:focus > .icon
+        background-position: -24px 0
+    &.append
+      > .icon
+        background-position: 0 -24px
+      &:hover > .icon, &:focus > .icon
+        background-position: 0 0
+    &.insert
+      > .icon
+        background-position: 0 -24px
+      &:hover > .icon, &:focus > .icon
+        background-position: 0 0
+    &.duplicate
+      > .icon
+        background-position: -48px -24px
+      &:hover > .icon, &:focus > .icon
+        background-position: -48px 0
+    &.sort-asc
+      > .icon
+        background-position: -168px -24px
+      &:hover > .icon, &:focus > .icon
+        background-position: -168px 0
+    &.sort-desc
+      > .icon
+        background-position: -192px -24px
+      &:hover > .icon, &:focus > .icon
+        background-position: -192px 0
+  ul li
+    ul
+      li .selected
+        background-color: #D5DDF6
+      display: none
+      position: relative
+      left: -10px
+      top: 0
+      border: none
+      box-shadow: inset 0 0 10px rgba(128, 128, 128, 0.5)
+      padding: 0 10px
+      -webkit-transition: all 0.3s ease-out
+      -moz-transition: all 0.3s ease-out
+      -o-transition: all 0.3s ease-out
+      transition: all 0.3s ease-out
+    overflow: hidden
+    &.selected! ul
+    ul li button
+      padding-left: 24px
+      &:hover, &:focus
+        background-color: #f5f5f5
+  button
+    &.type-string
+      > .icon
+        background-position: -144px -24px
+      &:hover > .icon, &:focus > .icon, &.selected > .icon
+        background-position: -144px 0
+    &.type-auto
+      > .icon
+        background-position: -120px -24px
+      &:hover > .icon, &:focus > .icon, &.selected > .icon
+        background-position: -120px 0
+    &.type-object
+      > .icon
+        background-position: -72px -24px
+      &:hover > .icon, &:focus > .icon, &.selected > .icon
+        background-position: -72px 0
+    &.type-array
+      > .icon
+        background-position: -96px -24px
+      &:hover > .icon, &:focus > .icon, &.selected > .icon
+        background-position: -96px 0
+
+// Fix button padding in firefox
+
+// ContextMenu - sub menu
+
+.jsoneditor
+  .menu
+    width: 100%
+    height: 35px
+    padding: 2px
+    margin: 0
+    overflow: hidden
+    -moz-box-sizing: border-box
+    -webkit-box-sizing: border-box
+    box-sizing: border-box
+    color: #1A1A1A
+    background-color: #D5DDF6
+    border-bottom: 1px solid #97B0F8
+    button
+      width: 26px
+      height: 26px
+      margin: 2px
+      padding: 2px
+      border-radius: 2px
+      border: 1px solid #aec0f8
+      background: #e3eaf6 url('jsoneditor-icons.png')
+      &:hover
+        background-color: #f0f2f5
+      &:active
+        background-color: #ffffff
+      &:disabled
+        background-color: #e3eaf6
+      &.collapse-all
+        background-position: 0 -96px
+      &.expand-all
+        background-position: 0 -120px
+      &.undo
+        background-position: -24px -96px
+        &:disabled
+          background-position: -24px -120px
+      &.redo
+        background-position: -48px -96px
+        &:disabled
+          background-position: -48px -120px
+      &.compact
+        background-position: -72px -96px
+      &.format
+        background-position: -72px -120px
+    a
+      font-family: arial, sans-serif
+      font-size: 10pt
+      color: #97B0F8
+      vertical-align: middle
+      &:hover
+        color: red
+      &.poweredBy
+        font-size: 8pt
+        position: absolute
+        right: 0
+        top: 0
+        padding: 10px
+  .search
+    input, .results
+      font-family: arial, sans-serif
+      font-size: 10pt
+      color: #1A1A1A
+    position: absolute
+    right: 2px
+    top: 2px
+    .frame
+      border: 1px solid #97B0F8
+      background-color: white
+      padding: 0 2px
+      margin: 0
+      table
+        border-collapse: collapse
+    input
+      width: 120px
+      border: none
+      outline: none
+      margin: 1px
+    .results
+      color: #4d4d4d
+      padding-right: 5px
+      line-height: 24px
+    button
+      width: 16px
+      height: 24px
+      padding: 0
+      margin: 0
+      border: none
+      background: url('jsoneditor-icons.png')
+      vertical-align: top
+      &:hover
+        background-color: transparent
+      &.refresh
+        width: 18px
+        background-position: -99px -73px
+      &.next
+        cursor: pointer
+        background-position: -124px -73px
+        &:hover
+          background-position: -124px -49px
+      &.previous
+        cursor: pointer
+        background-position: -148px -73px
+        margin-right: 2px
+        &:hover
+          background-position: -148px -49px
+
+// TODO: css for button:disabled is not supported by IE8

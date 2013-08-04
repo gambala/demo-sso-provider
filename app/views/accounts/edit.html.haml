@@ -5,4 +5,10 @@
 %h3 Редактирование аккаунта
 = form_tag account_update_path, method: :post, multipart: true do
 	= text_area_tag :info, @account.info.to_yaml, rows: 20, class: 'input-block-level'
+
+	/ Field for js-editor
+	= hidden_field_tag :json, @account.info.to_json
+	= hidden_field_tag :update_from_json, false
+	#jsoneditor
+
 	= submit_tag 'Update info data'
