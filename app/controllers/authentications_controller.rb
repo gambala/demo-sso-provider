@@ -1,5 +1,5 @@
 class AuthenticationsController < ApplicationController
-	def login
+	def auth
 		@unlinkedProviders = ['facebook', 'vkontakte', 'twitter', 'yandex', 'google_oauth2']
 	end
 	def logout

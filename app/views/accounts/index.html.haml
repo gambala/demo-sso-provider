@@ -1,1 +1,41 @@
-%p= @account.info
+.row-fluid
+	.span4
+
+		%ul.nav.nav-pills.nav-stacked
+			%li
+				%a{href: logout_path} Выйти из системы
+		%hr
+		.center
+			%h4 Cервисы, привязанные к вашему Аккаунту
+			%p
+				- @account.authentications.each do |authentication|
+					%a.btn{href: '/auth/'+authentication.provider, title: 'Обновить информацию Аккаунта'}
+						= I18n.t('auth.provider.name.'+authentication.provider)
+			%p
+				%a.btn{href: auth_path}
+					Перейти на страницу управления привязками
+
+	.span8
+		.well
+			.center
+				%h3 Ваш Аккаунт
+			- @account.info.each do |key, values|
+				%p
+					%b= t('field.'+key)
+
+					- if key == 'image'
+						- if values.kind_of?(Array)
+							- values.each do |value|
+								%img.thumbnail{src: value}
+						- else
+							%img{src: values}
+					- else
+						- if key == 'urls'
+							- values.each do |text, href|
+								%a{href: href} #{text}
+						- else
+							- if values.kind_of?(Array)
+								- values.each do |value|
+									.label= value
+							- else
+								.label= values

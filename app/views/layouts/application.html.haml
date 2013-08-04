@@ -9,8 +9,7 @@
 	%body
 		.container
 			%p
-			.well
-				= yield
+			= yield
 		#notifications
 			- flash.each do |name, msg|
 				- if msg.is_a?(String)
