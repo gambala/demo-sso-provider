@@ -11,3 +11,9 @@
 			%p
 			.well
 				= yield
+		#notifications
+			- flash.each do |name, msg|
+				- if msg.is_a?(String)
+					%div{:class => "alert alert-#{name == :notice ? "info" : (name == :alert ? "error" : name) }"}
+						%a.close{"data-dismiss" => "alert"} ×
+						= content_tag :div, msg, :id => "flash_#{name}"
