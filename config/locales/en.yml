@@ -43,6 +43,7 @@ en:
     edit_info: 'Edit account info'
     showed: 'Your account'
     return_to_it: 'Return to account'
+    no_omniauth_params: 'There is no omniauth parameters requested'
   application:
     new: 'Create application'
     select: 'Choose the application on left - or create a new'

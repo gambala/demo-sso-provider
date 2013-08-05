@@ -2,12 +2,16 @@ DemoTemplateRails::Application.routes.draw do
 
   resources :applications
 
-
+  # Client side
   get '/auth' => 'authentications#auth'
   get '/logout', to: 'authentications#logout'
   match '/auth/:provider/callback', to: 'authentications#callback'
   match '/auth/failure', to: 'authentications#failure'
   match '/auth/detach', to: 'authentications#detach'
+
+  # Provider side
+  match "/authorize", to: "accounts#authorize"
+
 
   match '/account', to: 'accounts#index'
   match '/account/edit', to: 'accounts#edit'
