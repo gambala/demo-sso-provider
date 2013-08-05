@@ -17,6 +17,8 @@
 				%a.btn{href: auth_path}
 					= t('account.manage_authentications')
 		%hr
+		= render '/grants/list'
+		%hr
 		= render '/applications/list'
 	.span8
 		.well

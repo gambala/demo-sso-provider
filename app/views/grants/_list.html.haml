@@ -1,0 +1,9 @@
+- if !( current_page?(account_path) or current_page?(root_path) )
+	%ul.nav.nav-pills.nav-stacked
+		%li
+			%a{href: root_path}= t('account.return_to_it')
+	%hr
+%ul.nav.nav-pills.nav-stacked
+	- @account.grants.each do |grant|
+		%li{class: (grant==@grant ? 'active' : false)}
+			%a{href: grant_path(grant)}= grant.code

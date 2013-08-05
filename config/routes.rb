@@ -1,5 +1,7 @@
 DemoTemplateRails::Application.routes.draw do
 
+  get "grants/:id" => 'grants#show', as: :grant
+
   resources :applications
 
   # Client side

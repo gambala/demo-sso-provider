@@ -60,9 +60,10 @@ class AccountsController < ApplicationController
 			else
 				grant = application.grants.find_by_account_id(session[:account_id])
 				if !grant
+					grant = application.grants.create({:account_id => session[:account_id]}, :without_protection => true)
 					flash[:notice] = 'No grant'
 				else
-					flash[:notice] = 'Yes grant'
+					flash[:notice] = grant.access_token_expires_at.to_s
 				end
 			end
 		end
