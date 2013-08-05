@@ -1,5 +1,6 @@
 class Application < ActiveRecord::Base
 	attr_accessible :account_id, :name, :redirect_uri, :secret, :uid
+	has_many :grants
 
 	before_create :default_values
 	def default_values

@@ -58,7 +58,12 @@ class AccountsController < ApplicationController
 			if !application
 				flash[:notice] = t('application.wrong_id')
 			else
-				flash[:notice] = 'Yes grant'
+				grant = application.grants.find_by_account_id(session[:account_id])
+				if !grant
+					flash[:notice] = 'No grant'
+				else
+					flash[:notice] = 'Yes grant'
+				end
 			end
 		end
 	end
