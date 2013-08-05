@@ -50,4 +50,5 @@ en:
     save: 'Save'
     edit: 'Edit'
     delete: 'Delete'
+    wrong_id: "Application ID error, please, try to contact with client-site's administration"
   deletion_confirm: 'Are you sure?'

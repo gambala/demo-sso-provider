@@ -1,5 +1,6 @@
 class AccountsController < ApplicationController
-	before_filter :check_authentication
+	before_filter :check_authentication, except: [:authorize]
+	before_filter :check_grant, only: [:index]
 
 	def index
 		@account = Account.find(session[:account_id])
@@ -45,11 +46,23 @@ class AccountsController < ApplicationController
 				'omniauth.origin' => session['omniauth.origin'],
 				'omniauth.state' => session['omniauth.state']
 			}
+			redirect_to account_path
+		end
+	end
 
-			if !session[:account_id]
-				redirect_to auth_path, notice: t('login.purpose')
+	protected
+
+	def check_grant
+		if session[:auth_params]
+			application = Application.where(uid: session[:auth_params][:client_id]).first
+			if !application
+				render text: t('application.wrong_id')
 			else
-				render text: 'Access granted'
+				# if Account.find(session[:account_id]).check_grant session[:auth_params]
+					render text: 'Yes grant'
+				# else
+					# render text: 'No grant'
+				# end
 			end
 		end
 	end
