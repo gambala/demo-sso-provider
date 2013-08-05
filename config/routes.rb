@@ -1,6 +1,7 @@
 DemoTemplateRails::Application.routes.draw do
 
   get "grants/:id" => 'grants#show', as: :grant
+  get "grants/:id/accept" => 'grants#accept', as: :accept_grant
 
   resources :applications
 

@@ -53,4 +53,6 @@ en:
     wrong_id: "Application ID error, please, try to contact with client-site's administration"
   grant:
     expired_at: 'This grant expired at'
+    accept: 'Accept'
+    accepted: 'Accepted'
   deletion_confirm: 'Are you sure?'

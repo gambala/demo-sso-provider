@@ -1,5 +1,5 @@
 class Grant < ActiveRecord::Base
-	attr_accessible :access_token, :access_token_expires_at, :code, :refresh_token
+	attr_accessible :access_token, :access_token_expires_at, :code, :refresh_token, :accepted
 	belongs_to :account
 	belongs_to :application
 	before_create :generate_tokens
