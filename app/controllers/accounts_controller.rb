@@ -54,17 +54,11 @@ class AccountsController < ApplicationController
 
 	def check_grant
 		if session[:auth_params]
-			application = Application.where(uid: session[:auth_params][:client_id]).first
+			application = Application.find_by_uid(session[:auth_params][:client_id])
 			if !application
 				flash[:notice] = t('application.wrong_id')
-				# render text: t('application.wrong_id')
 			else
-				# if Account.find(session[:account_id]).check_grant session[:auth_params]
-					flash[:notice] = 'Yes grant'
-					# render text: 'Yes grant'
-				# else
-					# render text: 'No grant'
-				# end
+				flash[:notice] = 'Yes grant'
 			end
 		end
 	end
