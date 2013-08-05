@@ -55,4 +55,6 @@ en:
     expired_at: 'This grant expired at'
     accept: 'Accept'
     accepted: 'Accepted'
+    deny: 'Deny'
+    denied: 'Denied'
   deletion_confirm: 'Are you sure?'

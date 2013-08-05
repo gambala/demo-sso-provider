@@ -1,8 +1,24 @@
 @import "bootstrap"
 @import "bootstrap-responsive"
+@import "compass/css3"
 
 .center
 	text-align: center
+
+
+// Настройки тени для текста
+$default-text-shadow-color: rgba(black, 0.6)
+$default-text-shadow-blur: 3px
+$default-text-shadow-v-offset: 1px
+
+
+// Центрированный градиент
+@mixin centered-gradient($color, $direction)
+	$color: darken($color, 10%)
+	border-color: $color
+	border-bottom-color: darken($color, 50%)
+	background-color: $color
+	+background-image(linear-gradient($direction, lighten($color, 20%), $color))
 
 
 #notifications
@@ -13,3 +29,58 @@
 	margin: 0 10%
 	.alert
 		margin-bottom: 0
+
+
+.btn-swapped
+	width: 100px
+
+	display: inline-block
+	padding: 4px 12px
+	margin-bottom: 0
+	font-size: 14px
+	line-height: 20px
+	text-align: center
+	vertical-align: middle
+	cursor: pointer
+	color: #333
+	+border-radius(4px)
+
+	.on-active
+		display: inline
+	.on-hover
+		display: none
+	&:hover
+		.on-active
+			display: none
+		.on-hover
+			display: inline
+
+
+.btn-denied-to-accept
+	color: #fff
+	+text-shadow
+	@include centered-gradient(#5bb65b, top)
+	+transition-property(all)
+	+transition-duration(0.5s)
+	+transition-timing-function(ease-out)
+
+
+	&:hover
+		color: #fff
+		+text-shadow
+		@include centered-gradient(#da4e49, top)
+
+
+.btn-accepted-to-deny
+	color: #fff
+	+text-shadow
+	@include centered-gradient(#da4e49, top)
+	+transition-property(all)
+	+transition-duration(0.5s)
+	+transition-timing-function(ease-out)
+
+	&:hover
+		color: #fff
+		+text-shadow
+		@include centered-gradient(#5bb65b, top)
+		content: "Deny"

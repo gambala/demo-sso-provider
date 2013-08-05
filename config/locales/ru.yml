@@ -55,4 +55,6 @@ ru:
     expired_at: 'Данный грант действителен до:'
     accept: 'Разрешить'
     accepted: 'Разрешен'
+    deny: 'Запретить'
+    denied: 'Запрещен'
   deletion_confirm: 'Вы уверены?'

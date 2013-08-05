@@ -4,16 +4,16 @@
   .span8
     .well
       .pull-right
-        - if @grant.accepted
-          %p
-            .btn.btn-success
-              = t('grant.accepted')
-        - else
-          %a.btn.btn-success{href: accept_grant_path(@grant), class: (@grant.accepted==true ? 'disabled' : false)}
-            = t('grant.accept')
-      /   %p
-      /     = link_to @application, method: :delete, class: 'btn', data: { confirm: t('deletion_confirm') } do
-      /       = t('application.delete')
+        %p
+          - if @grant.accepted
+            / = link_to @application, method: :delete, class: 'btn', data: { confirm: t('deletion_confirm') } do
+            %a.btn.btn-swapped.btn-denied-to-accept{href: grant_path(@grant)}
+              %span.on-active= t('grant.accepted')
+              %span.on-hover= t('grant.deny')
+          - else
+            %a.btn.btn-swapped.btn-denied-to-accept{href: accept_grant_path(@grant)}
+              %span.on-active= t('grant.denied')
+              %span.on-hover= t('grant.accept')
 
       %h3= @grant.application.name
 
