@@ -1,7 +1,7 @@
 .center
 	- if session[:account_id]
 		%p
-			%a.btn{href: root_path}= t('login.return_to_account')
+			%a.btn{href: root_path}= t('account.return_to_it')
 		%p= t('login.linked_accounts')
 		- @linkedProviders.each do |provider|
 			%p

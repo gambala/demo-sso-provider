@@ -9,7 +9,6 @@ en:
         without_linked: 'You may log in with one of this services'
     purpose: 'You need to log in with one of this services'
     failure: 'Sorry, but there is an error occurred on service side. Please try another service.'
-    return_to_account: 'Return to account'
     linked_accounts: 'There are some services already attached to your account'
   logout:
     success: 'You are successfully logout'
@@ -43,3 +42,11 @@ en:
     manage_authentications: 'Manage services merging'
     edit_info: 'Edit account info'
     showed: 'Your account'
+    return_to_it: 'Return to account'
+  application:
+    new: 'Create application'
+    select: 'Choose the application on left - or create a new'
+    save: 'Save'
+    edit: 'Edit'
+    delete: 'Delete'
+  deletion_confirm: 'Are you sure?'

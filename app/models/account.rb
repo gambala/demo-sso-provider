@@ -5,6 +5,8 @@ class Account < ActiveRecord::Base
 
   has_many :authentications
 
+  has_many :applications
+
   def add_info(info)
     self.info.merge!(info){|key, oldval, newval| [*oldval].to_a | [*newval].to_a}
   end

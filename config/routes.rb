@@ -1,5 +1,8 @@
 DemoTemplateRails::Application.routes.draw do
 
+  resources :applications
+
+
   get '/auth' => 'authentications#auth'
   get '/logout', to: 'authentications#logout'
   match '/auth/:provider/callback', to: 'authentications#callback'
