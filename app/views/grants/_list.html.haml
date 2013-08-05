@@ -6,4 +6,4 @@
 %ul.nav.nav-pills.nav-stacked
 	- @account.grants.each do |grant|
 		%li{class: (grant==@grant ? 'active' : false)}
-			%a{href: grant_path(grant)}= grant.code
+			%a{href: grant_path(grant)}= grant.application.name

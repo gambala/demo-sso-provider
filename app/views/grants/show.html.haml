@@ -11,14 +11,8 @@
       /     = link_to @application, method: :delete, class: 'btn', data: { confirm: t('deletion_confirm') } do
       /       = t('application.delete')
 
-      %h3= @grant.code
+      %h3= @grant.application.name
 
-      / %p
-      /   %b Uid:
-      /   = @application.uid
-      / %p
-      /   %b Secret:
-      /   = @application.secret
-      / %p
-      /   %b Redirect uri:
-      /   = @application.redirect_uri
+      %p
+        = t('grant.expired_at')
+        = l @grant.access_token_expires_at, format: :short
