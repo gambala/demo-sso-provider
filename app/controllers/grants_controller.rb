@@ -16,4 +16,11 @@ class GrantsController < ApplicationController
 			render text: 'No'
 		end
 	end
+	def destroy
+		account = Account.find(session[:account_id])
+		grant = account.grants.find(params[:id])
+		grant.destroy
+
+		redirect_to account_path, notice: 'Grant was succesfully banned'
+	end
 end

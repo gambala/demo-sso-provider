@@ -6,8 +6,7 @@
       .pull-right
         %p
           - if @grant.accepted
-            / = link_to @application, method: :delete, class: 'btn', data: { confirm: t('deletion_confirm') } do
-            %a.btn.btn-swapped.btn-accepted-to-deny{href: grant_path(@grant), style: 'width: 100px;'}
+            = link_to @grant, method: :delete, class: 'btn btn-swapped btn-accepted-to-deny', style: 'width: 100px;' do
               %span.on-active= t('grant.accepted')
               %span.on-hover= t('grant.deny')
           - else
