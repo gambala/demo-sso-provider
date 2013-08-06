@@ -33,10 +33,13 @@ class OrdersController < ApplicationController
 		@account = Account.find(session[:account_id]) if session[:account_id]
 		@application = Application.find_by_uid(params[:id])
 		if @account and @application
-			@grant = @application.grants.find_by_account_id(@account.id)
-
-			if @grant
-				render text: 'Grant existed'
+			grant = @application.grants.find_by_account_id(@account.id)
+			if grant
+				if grant.access_token_expires_at < Time.now
+					grant.destroy
+				else
+					render text: 'Grant existed - redirect immideatly'
+				end
 			end
 		end
 	end
