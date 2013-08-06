@@ -1,3 +1,4 @@
+
 # Setup
 
 ## Change database.yml
@@ -107,3 +108,24 @@ Changed application layout into haml:
 	bundle install
 	rails generate figaro:install
 
+## Added notification area
+
+`application.html.haml`
+
+	#notifications
+		- flash.each do |name, msg|
+			- if msg.is_a?(String)
+				%div{:class => "alert alert-#{name == :notice ? "info" : (name == :alert ? "error" : name) }"}
+					%a.close{"data-dismiss" => "alert"} ×
+					= content_tag :div, msg, :id => "flash_#{name}"
+
+`custom.css.sass`
+
+	#notifications
+		position: fixed
+		z-index: 10
+		bottom: 0
+		width: 80%
+		margin: 0 10%
+		.alert
+			margin-bottom: 0
