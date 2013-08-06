@@ -43,15 +43,29 @@ en:
     edit_info: 'Edit account info'
     showed: 'Your account'
     return_to_it: 'Return to account'
+    relogin: 'Login as a different user'
+    login: 'Log in'
   order:
     no_omniauth_params: 'There is no omniauth parameters requested'
+    wrong_id: 'Grant order id parameter missed'
+    purpose: 'There is an order to grant'
+    user: 'User'
+    application: 'Application'
+    no_user: 'There is no user logged in'
+    no_application: 'There is no application in system'
+    go_to_client: 'Go to client-site'
+    go_to_admins: 'Go to administration of client-site'
+    delete: 'Remove order'
+    wrong_conditions: 'Wrong conditions'
   application:
     new: 'Create application'
     select: 'Choose the application on left - or create a new'
     save: 'Save'
     edit: 'Edit'
     delete: 'Delete'
-    wrong_id: "Application ID error, please, try to contact with client-site's administration"
+    wrong_params: "Application params error, please, try to contact with client-site's administration"
+    created: 'Application was successfully created'
+    updated: 'Application was successfully updated'
   grant:
     expired_at: 'This grant expired at'
     accept: 'Accept'
@@ -61,4 +75,12 @@ en:
     denied_full: 'Grant was succesfully banned'
     accept_error: 'Grant accepting error'
     waiting: 'Waits for permit'
+    wrong_params: 'Could not find proper grant'
   deletion_confirm: 'Are you sure?'
+  authentication:
+    error: 'Authentication error'
+  header:
+    applications: 'Your applications'
+    grants: 'Your grants'
+    orders: 'Your orders'
+    site: 'Demo SSO provider site'

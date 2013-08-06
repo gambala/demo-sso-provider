@@ -6,7 +6,7 @@
 	.well.nav-list-well
 		%ul.nav.nav-list
 			%li.nav-header
-				%h4 Your grants
+				%h4= t('header.grants')
 			- @account.grants.each do |grant|
 				%li{class: (grant==@grant ? 'active' : false)}
 					%a{href: grant_path(grant)}

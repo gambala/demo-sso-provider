@@ -28,7 +28,7 @@ class OrdersController < ApplicationController
 	def show
 		@order = session[:grants_orders][params[:id]]
 		if !@order
-			redirect_to root_path, flash: {error: 'Grant order id parameter error'}
+			redirect_to root_path, flash: {error: t('order.wrong_id')}
 		end
 		@account = Account.find(session[:account_id]) if session[:account_id]
 		@application = Application.find_by_uid(params[:id])
@@ -76,6 +76,6 @@ class OrdersController < ApplicationController
 	def deny
 		redirect_uri = session[:grants_orders][params[:id]]['omniauth.origin']
 		session[:grants_orders].delete(params[:id])
-		redirect_to redirect_uri, flash: {error: 'Authentication error'}
+		redirect_to redirect_uri, flash: {error: t('authentication.error')}
 	end
 end

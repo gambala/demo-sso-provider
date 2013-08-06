@@ -6,7 +6,7 @@
 	.well.nav-list-well
 		%ul.nav.nav-list
 			%li.nav-header
-				%h4 Your orders
+				%h4= t('header.orders')
 			- session[:grants_orders].each do |client_id, data|
 				%li{class: (client_id==params[:order_id] ? 'active' : false)}
 					%a{href: order_path(client_id)}

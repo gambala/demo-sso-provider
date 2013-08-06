@@ -18,17 +18,13 @@ class GrantsController < ApplicationController
 	def token
 		application = Application.where(uid: params[:client_id], secret: params[:client_secret]).first
 		if application.nil?
-			render json: {error: "Could not find application"}
+			render json: {error: t('application.wrong_params')}
 			return
 		end
 
 		grant = Grant.where(code: params[:code], application_id: application.id).first
 		if grant.nil?
-			render json: {
-				error: "Could not authenticate access code",
-				code: params[:code],
-				application_id: application.id
-			}
+			render json: {error: t('grant.wrong_params')}
 			return
 		end
 
@@ -39,5 +35,3 @@ class GrantsController < ApplicationController
 		}
 	end
 end
-
-Grant.where(code: '0d22284420f609478dbe6f682b369c99', application_id: 3).first

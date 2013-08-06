@@ -5,7 +5,7 @@
 .well.nav-list-well
 	%ul.nav.nav-list
 		%li.nav-header
-			%h4 Your applications
+			%h4= t('header.applications')
 		- @account.applications.each do |application|
 			%li{class: (application==@application ? 'active' : false)}
 				%a{href: application_path(application)}= application.name
