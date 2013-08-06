@@ -29,8 +29,10 @@ class AccountsController < ApplicationController
 	private
 
 	def check_grant
-		if session[:grants_orders].length == 1
-			redirect_to order_path(session[:grants_orders].keys[0])
+		if session[:grants_orders]
+			if session[:grants_orders].length == 1
+				redirect_to order_path(session[:grants_orders].keys[0])
+			end
 		end
 	end
 end
