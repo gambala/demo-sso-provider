@@ -4,21 +4,21 @@
 		%ul.nav.nav-pills.nav-stacked
 			%li
 				%a{href: logout_path}= t('auth.logout')
-		%hr
-		.center
-			%h4= t('account.services.attached')
-			- @account.authentications.each do |authentication|
-				%p
-					%a.btn{href: '/auth/'+authentication.provider, title: t('account.update')}
-						= I18n.t('auth.provider.name.'+authentication.provider)
-					%a.btn.btn-link{href: '/auth/detach?auth_id='+authentication.provider}
-						= t('auth.detach')
-			%p
-				%a.btn{href: auth_path}
-					= t('account.manage_authentications')
-		%hr
+		.well.nav-list-well
+			%ul.nav.nav-list
+				%li.nav-header
+					%h4= t('account.services.attached')
+				- @account.authentications.each do |authentication|
+					%li
+						%a.text-error.pull-right{href: '/auth/detach?auth_id='+authentication.provider}
+							= t('auth.detach')
+						%a{href: '/auth/'+authentication.provider, title: t('account.update')}
+							= I18n.t('auth.provider.name.'+authentication.provider)
+				%li.divider
+				%li
+					%a.text-success{href: auth_path}
+						= t('account.manage_authentications')
 		= render '/grants/list'
-		%hr
 		= render '/applications/list'
 	.span8
 		.well

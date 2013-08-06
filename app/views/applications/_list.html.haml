@@ -2,12 +2,15 @@
 	%ul.nav.nav-pills.nav-stacked
 		%li
 			%a{href: root_path}= t('account.return_to_it')
-	%hr
-%ul.nav.nav-pills.nav-stacked
-	%li
-		%a{href: new_application_path}= t('application.new')
-/ %hr
-%ul.nav.nav-pills.nav-stacked
-	- @account.applications.each do |application|
-		%li{class: (application==@application ? 'active' : false)}
-			%a{href: application_path(application)}= application.name
+.well.nav-list-well
+	%ul.nav.nav-list
+		%li.nav-header
+			%h4 Your applications
+		- @account.applications.each do |application|
+			%li{class: (application==@application ? 'active' : false)}
+				%a{href: application_path(application)}= application.name
+		%li.divider
+		%li
+			%a.text-success{href: new_application_path}= t('application.new')
+
+

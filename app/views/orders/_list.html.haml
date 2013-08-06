@@ -1,0 +1,13 @@
+- if !( current_page?(account_path) or current_page?(root_path) )
+	%ul.nav.nav-pills.nav-stacked
+		%li
+			%a{href: root_path}= t('account.return_to_it')
+- if session[:grants_orders]
+	.well.nav-list-well
+		%ul.nav.nav-list
+			%li.nav-header
+				%h4 Your orders
+			- session[:grants_orders].each do |client_id, data|
+				%li{class: (client_id==params[:order_id] ? 'active' : false)}
+					%a{href: order_path(client_id)}
+						= data['omniauth.origin']

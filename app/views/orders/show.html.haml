@@ -34,24 +34,3 @@
     - else
       %p Условия не соблюдены
       %a.btn.btn-danger{href: order_deny_path} Удалить заявку
-
-  /   / = render 'list'
-  / .span8
-  /   .well
-  /     .pull-right
-  /       %p
-  /         = @order[:state]
-  /     /     - if @grant.accepted
-  /     /       = link_to @grant, method: :delete, class: 'btn btn-swapped btn-accepted-to-deny', style: 'width: 100px;' do
-  /     /         %span.on-active= t('grant.accepted')
-  /     /         %span.on-hover= t('grant.deny')
-  /     /     - else
-  /     /       %a.btn.btn-swapped.btn-denied-to-accept{href: accept_grant_path(@grant), style: 'width: 100px;'}
-  /     /         %span.on-active= t('grant.denied')
-  /     /         %span.on-hover= t('grant.accept')
-
-  /     / %h3= @grant.application.name
-
-  /     / %p
-  /     /   = t('grant.expired_at')
-  /     /   = l @grant.access_token_expires_at, format: :short
