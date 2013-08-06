@@ -68,7 +68,8 @@ class OrdersController < ApplicationController
 			session['omniauth.origin'] = order['omniauth.origin']
 			session['omniauth.state'] = order['omniauth.state']
 
-			redirect_to params[:redirect_uri] + "?code="+ SecureRandom.hex(16) +"&response_type=code&state="+ params[:state]
+			# нужен code но grant я тут ведь удаляю?
+			redirect_to "#{params[:redirect_uri]}?code=#{grant.code}&response_type=code&state=#{params[:state]}"
 		end
 	end
 

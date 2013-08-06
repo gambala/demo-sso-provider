@@ -1,6 +1,7 @@
 class AccountsController < ApplicationController
-	before_filter :check_authentication, except: [:authorize]
+	before_filter :check_authentication, except: :get
 	before_filter :check_grant, only: [:index]
+	skip_before_filter :verify_authenticity_token, only: :get
 
 	def index
 		@account = Account.find(session[:account_id])
@@ -24,6 +25,23 @@ class AccountsController < ApplicationController
 		else
 			redirect_to account_path, flash: {error: t('account.not_updated')}
 		end
+	end
+
+	def get
+		hash = {
+			session: session
+			# provider: 'josh_id',
+			# :id => current_user.id.to_s,
+			# :info => {
+			# 	:email => current_user.email,
+			# },
+			# :extra => {
+			# 	:first_name => current_user.first_name,
+			# 	:last_name  => current_user.last_name
+			# }
+		}
+
+		render :json => hash.to_json
 	end
 
 	private

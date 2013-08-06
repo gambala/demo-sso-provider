@@ -16,15 +16,28 @@ class GrantsController < ApplicationController
 	end
 
 	def token
-		# if !session[:account_id]
-			# render :json => {:error => "User is not signed in"}
-		# else
-    		application = Application.where(uid: params[:client_id], secret: params[:client_secret])
-    		if !application
-				render :json => {:error => "Could not find application"}
-			else
-				render :json => {:error => "All ok"}
-			end
-		# end
+		application = Application.where(uid: params[:client_id], secret: params[:client_secret]).first
+		if application.nil?
+			render json: {error: "Could not find application"}
+			return
+		end
+
+		grant = Grant.where(code: params[:code], application_id: application.id).first
+		if grant.nil?
+			render json: {
+				error: "Could not authenticate access code",
+				code: params[:code],
+				application_id: application.id
+			}
+			return
+		end
+
+		render json: {
+			access_token: grant.access_token,
+			refresh_token: grant.refresh_token,
+			expires_in: grant.access_token_expires_at.to_i
+		}
 	end
 end
+
+Grant.where(code: '0d22284420f609478dbe6f682b369c99', application_id: 3).first
