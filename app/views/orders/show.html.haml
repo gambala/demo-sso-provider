@@ -26,10 +26,9 @@
             %a.btn{href: @order['omniauth.origin']} Обратиться к администрации сайты-клиента
 .row
   .span12.center
-    - if @grant
-      = @grant
-    - else
-      Нет гранта
+    %a.btn.btn-success{href: order_accept_path} Разрешить
+    %a.btn.btn-danger{href: order_deny_path} Запретить
+
   /   / = render 'list'
   / .span8
   /   .well

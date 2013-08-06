@@ -40,4 +40,13 @@ class OrdersController < ApplicationController
 			end
 		end
 	end
+
+	def accept
+	end
+
+	def deny
+		redirect_uri = session[:grants_orders][params[:id]]['omniauth.origin']
+		session[:grants_orders].delete(params[:id])
+		redirect_to redirect_uri, flash: {error: 'Authentication error'}
+	end
 end

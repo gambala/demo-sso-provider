@@ -12,6 +12,8 @@ DemoTemplateRails::Application.routes.draw do
 
   match "/authorize", to: "orders#register"
   get "orders/:id" => 'orders#show', as: :order
+  get "orders/:id/accept" => 'orders#accept', as: :order_accept
+  get "orders/:id/deny" => 'orders#deny', as: :order_deny
 
 
 
