@@ -1,6 +1,14 @@
 class GrantsController < ApplicationController
 	before_filter :check_authentication
 
+	def order
+		@account = Account.find(session[:account_id])
+		@grant_order = session[:grants_orders][params[:order_id]]
+		if !@grant_order
+			redirect_to account_path, flash: {error: 'Grant order id parameter error'}
+		end
+	end
+
 	def show
 		@account = Account.find(session[:account_id])
 		@grant = @account.grants.find(params[:id])
