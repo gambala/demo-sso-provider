@@ -19,7 +19,6 @@ DemoTemplateRails::Application.routes.draw do
 
   get "grants/:id" => 'grants#show', as: :grant
   match "grants/:id" => 'grants#destroy', as: :grant, via: :delete
-  get "grants/:id/accept" => 'grants#accept', as: :accept_grant
 
 
 
