@@ -1,5 +1,7 @@
 DemoTemplateRails::Application.routes.draw do
 
+  root to: 'accounts#index'
+
   # Client side
   get '/auth' => 'authentications#auth'
   get '/logout', to: 'authentications#logout'
@@ -7,27 +9,22 @@ DemoTemplateRails::Application.routes.draw do
   match '/auth/failure', to: 'authentications#failure'
   match '/auth/detach', to: 'authentications#detach'
 
-  # Provider side
-  resources :applications
-
-  match "/authorize", to: "orders#register"
-  get "orders/:id" => 'orders#show', as: :order
-  get "orders/:id/accept" => 'orders#accept', as: :order_accept
-  get "orders/:id/deny" => 'orders#deny', as: :order_deny
-
-
-
-  get "grants/:id" => 'grants#show', as: :grant
-  match "grants/:id" => 'grants#destroy', as: :grant, via: :delete
-
-
-
-
   match '/account', to: 'accounts#index'
   match '/account/edit', to: 'accounts#edit'
   match '/account/update', to: 'accounts#update'
 
-  root to: 'accounts#index'
+  # Provider side
+  resources :applications
+
+  match '/authorize', to: 'orders#register'
+  get '/orders/:id' => 'orders#show', as: :order
+  get '/orders/:id/accept' => 'orders#accept', as: :order_accept
+  get '/orders/:id/deny' => 'orders#deny', as: :order_deny
+
+  get '/grants/:id' => 'grants#show', as: :grant
+  match '/grants/:id' => 'grants#destroy', as: :grant, via: :delete
+  match '/oauth/token' => 'grants#token'
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -76,11 +73,11 @@ DemoTemplateRails::Application.routes.draw do
   #     resources :products
   #   end
 
-  # You can have the root of your site routed with "root"
+  # You can have the root of your site routed with 'root'
   # just remember to delete public/index.html.
   # root :to => 'welcome#index'
 
-  # See how all your routes lay out with "rake routes"
+  # See how all your routes lay out with 'rake routes'
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.

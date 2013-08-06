@@ -49,7 +49,14 @@ class OrdersController < ApplicationController
 		account = Account.find(session[:account_id]) if session[:account_id]
 		application = Application.find_by_uid(params[:id])
 		if account and application
-			grant = application.grants.create({:account_id => session[:account_id]}, :without_protection => true)
+			session[:grants_orders].delete(params[:id])
+			grant = application.grants.find_by_account_id(account.id)
+			if !grant
+				grant = application.grants.create({:account_id => account.id}, :without_protection => true)
+			end
+			if !grant.access_token_expires_at
+				grant.start_expiry_period!
+			end
 
 			params = {
 				client_id: order[:client_id],
@@ -60,7 +67,6 @@ class OrdersController < ApplicationController
 			session['omniauth.params'] = order['omniauth.params']
 			session['omniauth.origin'] = order['omniauth.origin']
 			session['omniauth.state'] = order['omniauth.state']
-			session[:grants_orders].delete(params[:id])
 
 			redirect_to params[:redirect_uri] + "?code="+ SecureRandom.hex(16) +"&response_type=code&state="+ params[:state]
 		end
