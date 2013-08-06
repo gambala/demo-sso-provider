@@ -21,7 +21,7 @@ class GrantsController < ApplicationController
 		account = Account.find(session[:account_id])
 		grant = account.grants.find(params[:id])
 		grant.destroy
-		session[:auth_params] = nil
+		session[:grants_orders] = nil
 
 		redirect_to account_path, notice: t('grant.denied_full')
 	end

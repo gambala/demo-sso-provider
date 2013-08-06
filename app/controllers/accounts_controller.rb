@@ -37,15 +37,15 @@ class AccountsController < ApplicationController
 
 			redirect_to root_path, flash: {error: t('account.no_omniauth_params')}
 		else
-			session[:auth_params] = {
-				client_id: params[:client_id],
+			session[:grants_orders] = Hash.new if !session[:grants_orders]
+			session[:grants_orders].merge!(params[:client_id] => {
 				redirect_uri: params[:redirect_uri],
 				state: params[:state],
 				response_type: params[:response_type],
 				'omniauth.params' => session['omniauth.params'],
 				'omniauth.origin' => session['omniauth.origin'],
 				'omniauth.state' => session['omniauth.state']
-			}
+			})
 			redirect_to account_path
 		end
 	end
@@ -53,8 +53,8 @@ class AccountsController < ApplicationController
 	protected
 
 	def check_grant
-		if session[:auth_params]
-			application = Application.find_by_uid(session[:auth_params][:client_id])
+		if session[:grants_orders]
+			application = Application.find_by_uid(session[:grants_orders][:client_id])
 			if !application
 				flash[:notice] = t('application.wrong_id')
 			else

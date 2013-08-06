@@ -3,11 +3,18 @@
 		%li
 			%a{href: root_path}= t('account.return_to_it')
 	%hr
+- if session[:grants_orders]
+	%ul.nav.nav-pills.nav-stacked
+		- session[:grants_orders].each do |client_id, data|
+			%li
+				/ %a{href: grant_order_path(client_id)}
+				= data['omniauth.origin']
+	%hr
 %ul.nav.nav-pills.nav-stacked
 	- @account.grants.each do |grant|
 		%li{class: (grant==@grant ? 'active' : false)}
 			%a{href: grant_path(grant)}
 				= grant.application.name
-				- if session[:auth_params]
-					- if session[:auth_params][:client_id] == grant.application.uid
+				- if session[:grants_orders]
+					- if session[:grants_orders][:client_id] == grant.application.uid
 						%span.badge.badge-important= t('grant.waiting')
