@@ -2,7 +2,7 @@
   %p Запрашивается разрешение на грант
 .row
   .span4.offset2
-    .well
+    .well{class: (@account ? 'alert-success' : 'alert-danger')}
       .center
         %h4 Пользователь
         - if @account
@@ -15,19 +15,25 @@
           %p
             %a.btn{href: auth_path} Войти в систему
   .span4
-    .well
+    .well{class: (@application ? 'alert-success' : 'alert-danger')}
       .center
         %h4 Приложение
         - if @application
           %p= @application.name
+          %p
+            %a.btn{href: @order['omniauth.origin']} Перейти на сайт-клиент
         - else
           %p Приложение не зарегистрировано в системе
           %p
             %a.btn{href: @order['omniauth.origin']} Обратиться к администрации сайты-клиента
 .row
   .span12.center
-    %a.btn.btn-success{href: order_accept_path} Разрешить
-    %a.btn.btn-danger{href: order_deny_path} Запретить
+    - if @application and @account
+      %a.btn.btn-success{href: order_accept_path} Разрешить
+      %a.btn.btn-danger{href: order_deny_path} Запретить
+    - else
+      %p Условия не соблюдены
+      %a.btn.btn-danger{href: order_deny_path} Удалить заявку
 
   /   / = render 'list'
   / .span8
