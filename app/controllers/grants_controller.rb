@@ -14,6 +14,10 @@ class GrantsController < ApplicationController
 		@grant = @account.grants.find(params[:id])
 	end
 
+	def create
+		# grant = application.grants.create({:account_id => session[:account_id]}, :without_protection => true)
+	end
+
 	def accept
 		account = Account.find(session[:account_id])
 		grant = account.grants.find(params[:id])
@@ -25,6 +29,7 @@ class GrantsController < ApplicationController
 			redirect_to grant_path(grant), notice: t('grant.accept_error')
 		end
 	end
+
 	def destroy
 		account = Account.find(session[:account_id])
 		grant = account.grants.find(params[:id])

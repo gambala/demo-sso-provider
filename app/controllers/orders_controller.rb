@@ -34,6 +34,10 @@ class OrdersController < ApplicationController
 		@application = Application.find_by_uid(params[:id])
 		if @account and @application
 			@grant = @application.grants.find_by_account_id(@account.id)
+
+			if @grant
+				render text: 'Grant existed'
+			end
 		end
 	end
 end

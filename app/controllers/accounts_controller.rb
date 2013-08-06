@@ -26,22 +26,11 @@ class AccountsController < ApplicationController
 		end
 	end
 
-	protected
+	private
 
 	def check_grant
-		if session[:grants_orders]
-			application = Application.find_by_uid(session[:grants_orders][:client_id])
-			if !application
-				flash[:notice] = t('application.wrong_id')
-			else
-				grant = application.grants.find_by_account_id(session[:account_id])
-				if !grant
-					grant = application.grants.create({:account_id => session[:account_id]}, :without_protection => true)
-					flash[:notice] = 'No grant'
-				else
-					flash[:notice] = grant.access_token_expires_at.to_s
-				end
-			end
+		if session[:grants_orders].length == 1
+			redirect_to order_path(session[:grants_orders].keys[0])
 		end
 	end
 end
