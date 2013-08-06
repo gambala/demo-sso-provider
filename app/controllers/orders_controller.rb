@@ -45,6 +45,25 @@ class OrdersController < ApplicationController
 	end
 
 	def accept
+		order = session[:grants_orders][params[:id]]
+		account = Account.find(session[:account_id]) if session[:account_id]
+		application = Application.find_by_uid(params[:id])
+		if account and application
+			grant = application.grants.create({:account_id => session[:account_id]}, :without_protection => true)
+
+			params = {
+				client_id: order[:client_id],
+				redirect_uri: order[:redirect_uri],
+				state: order[:state],
+				response_type: order[:response_type],
+			}
+			session['omniauth.params'] = order['omniauth.params']
+			session['omniauth.origin'] = order['omniauth.origin']
+			session['omniauth.state'] = order['omniauth.state']
+			session[:grants_orders].delete(params[:id])
+
+			redirect_to params[:redirect_uri] + "?code="+ SecureRandom.hex(16) +"&response_type=code&state="+ params[:state]
+		end
 	end
 
 	def deny
