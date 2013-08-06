@@ -57,4 +57,5 @@ ru:
     accepted: 'Разрешен'
     deny: 'Запретить'
     denied: 'Запрещен'
+    denied_full: 'Грант был успешно аннулирован'
   deletion_confirm: 'Вы уверены?'
