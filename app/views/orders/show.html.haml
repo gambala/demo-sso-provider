@@ -7,7 +7,7 @@
         %h4 Пользователь
         - if @account
           %p
-            %a{href: account_path}= @account.info['name'][0]
+            %a{href: account_path}= @account.get_info('name')
           %p
             %a.btn{href: logout_path} Зайти под другим аккаунтом
         - else

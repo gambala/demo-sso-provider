@@ -11,7 +11,16 @@ class Account < ActiveRecord::Base
   def add_info(info)
     self.info.merge!(info){|key, oldval, newval| [*oldval].to_a | [*newval].to_a}
   end
+
   def add_authentications(authentications)
     self.authentications << authentications
+  end
+
+  def get_info(key)
+    if self.info[key].kind_of?(Array)
+      return self.info[key][0]
+    else
+      return self.info[key]
+    end
   end
 end
