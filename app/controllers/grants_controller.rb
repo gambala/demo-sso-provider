@@ -12,8 +12,9 @@ class GrantsController < ApplicationController
 
 		if grant.update_attributes(accepted: true)
 			render text: 'Yes'
+		    # redirect_to access_grant.redirect_uri_for(params[:redirect_uri])
 		else
-			render text: 'No'
+			redirect_to grant_path(grant), notice: t('grant.accept_error')
 		end
 	end
 	def destroy
