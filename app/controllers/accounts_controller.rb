@@ -28,19 +28,18 @@ class AccountsController < ApplicationController
 	end
 
 	def get
-		hash = {
-			session: session
-			# provider: 'josh_id',
-			# :id => current_user.id.to_s,
-			# :info => {
-			# 	:email => current_user.email,
-			# },
-			# :extra => {
-			# 	:first_name => current_user.first_name,
-			# 	:last_name  => current_user.last_name
-			# }
-		}
-
+		application = Application.find_by_uid(params[:client])
+		grant = application.grants.find_by_access_token(params[:access_token])
+		data_hash = grant.account.info
+		hash = Hash.new
+		hash['id'] = grant.account.id
+		data_hash.each do |key, value|
+			if value.kind_of?(Array)
+				hash[key] = value[0]
+			else
+				hash[key] = value
+			end
+		end
 		render :json => hash.to_json
 	end
 
@@ -49,7 +48,7 @@ class AccountsController < ApplicationController
 	def check_grant
 		if session[:grants_orders]
 			if session[:grants_orders].length == 1
-				# redirect_to order_path(session[:grants_orders].keys[0])
+				redirect_to order_path(session[:grants_orders].keys[0])
 			end
 		end
 	end
