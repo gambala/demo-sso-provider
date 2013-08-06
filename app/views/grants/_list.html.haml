@@ -6,4 +6,8 @@
 %ul.nav.nav-pills.nav-stacked
 	- @account.grants.each do |grant|
 		%li{class: (grant==@grant ? 'active' : false)}
-			%a{href: grant_path(grant)}= grant.application.name
+			%a{href: grant_path(grant)}
+				= grant.application.name
+				- if session[:auth_params]
+					- if session[:auth_params][:client_id] == grant.application.uid
+						%span.badge.badge-important= t('grant.waiting')

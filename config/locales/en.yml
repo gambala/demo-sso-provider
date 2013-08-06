@@ -59,4 +59,5 @@ en:
     denied: 'Denied'
     denied_full: 'Grant was succesfully banned'
     accept_error: 'Grant accepting error'
+    waiting: 'Waits for permit'
   deletion_confirm: 'Are you sure?'
