@@ -7,7 +7,7 @@
 	%ul.nav.nav-pills.nav-stacked
 		- session[:grants_orders].each do |client_id, data|
 			%li{class: (client_id==params[:order_id] ? 'active' : false)}
-				%a{href: grant_order_path(client_id)}
+				%a{href: order_path(client_id)}
 					= data['omniauth.origin']
 	%hr
 %ul.nav.nav-pills.nav-stacked

@@ -1,12 +1,5 @@
 DemoTemplateRails::Application.routes.draw do
 
-  get "grants/:id" => 'grants#show', as: :grant
-  match "grants/:id" => 'grants#destroy', as: :grant, via: :delete
-  get "grants/:id/accept" => 'grants#accept', as: :accept_grant
-  get "grants-orders/:order_id" => 'grants#order', as: :grant_order
-
-  resources :applications
-
   # Client side
   get '/auth' => 'authentications#auth'
   get '/logout', to: 'authentications#logout'
@@ -15,7 +8,18 @@ DemoTemplateRails::Application.routes.draw do
   match '/auth/detach', to: 'authentications#detach'
 
   # Provider side
-  match "/authorize", to: "accounts#authorize"
+  resources :applications
+
+  match "/authorize", to: "orders#register"
+  get "orders/:id" => 'orders#show', as: :order
+
+
+
+  get "grants/:id" => 'grants#show', as: :grant
+  match "grants/:id" => 'grants#destroy', as: :grant, via: :delete
+  get "grants/:id/accept" => 'grants#accept', as: :accept_grant
+
+
 
 
   match '/account', to: 'accounts#index'

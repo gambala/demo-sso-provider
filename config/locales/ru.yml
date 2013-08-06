@@ -43,6 +43,7 @@ ru:
     edit_info: 'Редактировать данные анкеты'
     showed: 'Ваш аккаунт'
     return_to_it: 'Вернуться к аккаунту'
+  order:
     no_omniauth_params: 'Нет переданных omniauth параметров'
   application:
     new: 'Создать приложение'

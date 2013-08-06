@@ -1,0 +1,52 @@
+.center
+  %p Запрашивается разрешение на грант
+.row
+  .span4.offset2
+    .well
+      .center
+        %h4 Пользователь
+        - if @account
+          %p
+            %a{href: account_path}= @account.info['name'][0]
+          %p
+            %a.btn{href: logout_path} Зайти под другим аккаунтом
+        - else
+          %p Пользователя нет в системе
+          %p
+            %a.btn{href: auth_path} Войти в систему
+  .span4
+    .well
+      .center
+        %h4 Приложение
+        - if @application
+          %p= @application.name
+        - else
+          %p Приложение не зарегистрировано в системе
+          %p
+            %a.btn{href: @order['omniauth.origin']} Обратиться к администрации сайты-клиента
+.row
+  .span12.center
+    - if @grant
+      = @grant
+    - else
+      Нет гранта
+  /   / = render 'list'
+  / .span8
+  /   .well
+  /     .pull-right
+  /       %p
+  /         = @order[:state]
+  /     /     - if @grant.accepted
+  /     /       = link_to @grant, method: :delete, class: 'btn btn-swapped btn-accepted-to-deny', style: 'width: 100px;' do
+  /     /         %span.on-active= t('grant.accepted')
+  /     /         %span.on-hover= t('grant.deny')
+  /     /     - else
+  /     /       %a.btn.btn-swapped.btn-denied-to-accept{href: accept_grant_path(@grant), style: 'width: 100px;'}
+  /     /         %span.on-active= t('grant.denied')
+  /     /         %span.on-hover= t('grant.accept')
+
+  /     / %h3= @grant.application.name
+
+  /     / %p
+  /     /   = t('grant.expired_at')
+  /     /   = l @grant.access_token_expires_at, format: :short
