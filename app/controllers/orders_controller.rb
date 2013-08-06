@@ -38,7 +38,7 @@ class OrdersController < ApplicationController
 				if grant.access_token_expires_at < Time.now
 					grant.destroy
 				else
-					render text: 'Grant existed - redirect immideatly'
+					accept()
 				end
 			end
 		end
