@@ -1,7 +1,7 @@
 class AccountsController < ApplicationController
-	before_filter :check_authentication, except: :get
+	before_filter :check_authentication, except: :get_info
 	before_filter :check_grant, only: [:index]
-	skip_before_filter :verify_authenticity_token, only: :get
+	skip_before_filter :verify_authenticity_token, only: :get_info
 
 	def index
 		@account = Account.find(session[:account_id])
@@ -27,7 +27,7 @@ class AccountsController < ApplicationController
 		end
 	end
 
-	def get
+	def get_info
 		application = Application.find_by_uid(params[:client])
 		grant = application.grants.find_by_access_token(params[:access_token])
 		data_hash = grant.account.info

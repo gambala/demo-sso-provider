@@ -24,7 +24,7 @@ DemoTemplateRails::Application.routes.draw do
   get '/grants/:id' => 'grants#show', as: :grant
   match '/grants/:id' => 'grants#destroy', as: :grant, via: :delete
   match '/oauth/token' => 'grants#token'
-  match "/hash", to: "accounts#get"
+  match "/get_info", to: "accounts#get_info"
 
 
   # The priority is based upon order of creation:
