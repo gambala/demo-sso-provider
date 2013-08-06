@@ -39,5 +39,3 @@ class GrantsController < ApplicationController
 		}
 	end
 end
-
-Grant.where(code: '0d22284420f609478dbe6f682b369c99', application_id: 3).first

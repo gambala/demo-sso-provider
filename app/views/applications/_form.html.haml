@@ -3,7 +3,6 @@
     %a#submit.btn{href: 'javascript:;', style: 'display: none;'}
       = t('application.save')
 
-
   - if @application.errors.any?
     #error_explanation
       %h2= "#{pluralize(@application.errors.count, "error")} prohibited this application from being saved:"

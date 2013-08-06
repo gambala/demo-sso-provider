@@ -1,36 +1,36 @@
 .center
-  %p Запрашивается разрешение на грант
+  %p= t('order.purpose')
 .row
   .span4.offset2
     .well{class: (@account ? 'alert-success' : 'alert-danger')}
       .center
-        %h4 Пользователь
+        %h4= t('order.user')
         - if @account
           %p
             %a{href: account_path}= @account.get_info('name')
           %p
-            %a.btn{href: logout_path} Зайти под другим аккаунтом
+            %a.btn{href: logout_path}= t('account.relogin')
         - else
-          %p Пользователя нет в системе
+          %p= t('order.no_user')
           %p
-            %a.btn{href: auth_path} Войти в систему
+            %a.btn{href: auth_path}= t('account.login')
   .span4
     .well{class: (@application ? 'alert-success' : 'alert-danger')}
       .center
-        %h4 Приложение
+        %h4= t('order.application')
         - if @application
           %p= @application.name
           %p
-            %a.btn{href: @order['omniauth.origin']} Перейти на сайт-клиент
+            %a.btn{href: @order['omniauth.origin']}= t('order.go_to_client')
         - else
-          %p Приложение не зарегистрировано в системе
+          %p= t('order.no_application')
           %p
-            %a.btn{href: @order['omniauth.origin']} Обратиться к администрации сайты-клиента
+            %a.btn{href: @order['omniauth.origin']}= t('order.go_to_admins')
 .row
   .span12.center
     - if @application and @account
-      %a.btn.btn-success{href: order_accept_path} Разрешить
-      %a.btn.btn-danger{href: order_deny_path} Запретить
+      %a.btn.btn-success{href: order_accept_path}= t('grant.accept')
+      %a.btn.btn-danger{href: order_deny_path}= t('grant.deny')
     - else
-      %p Условия не соблюдены
-      %a.btn.btn-danger{href: order_deny_path} Удалить заявку
+      %p= t('order.wrong_conditions')
+      %a.btn.btn-danger{href: order_deny_path}= t('order.delete')
