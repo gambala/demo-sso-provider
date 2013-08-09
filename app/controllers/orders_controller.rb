@@ -3,13 +3,14 @@ class OrdersController < ApplicationController
 		if params[:client_id].nil? ||
 				params[:redirect_uri].nil? ||
 				params[:state].nil? ||
-				params[:response_type].nil? ||
-				session['omniauth.params'].nil? ||
-				session['omniauth.origin'].nil? ||
-				session['omniauth.state'].nil?
+				params[:response_type].nil?
 
 			redirect_to root_path, flash: {error: t('order.no_omniauth_params')}
 		else
+			if session['omniauth.state'].nil?
+				myUri = URI.parse(params[:redirect_uri])
+				session['omniauth.origin'] = params[:redirect_uri][0..myUri.path.length-2]
+			end
 			session[:grants_orders] = Hash.new if !session[:grants_orders]
 			session[:grants_orders].merge!(
 				params[:client_id] => {
@@ -21,6 +22,10 @@ class OrdersController < ApplicationController
 					'omniauth.state' => session['omniauth.state']
 				}
 			)
+			session.delete('omniauth.params')
+			session.delete('omniauth.origin')
+			session.delete('omniauth.state')
+
 			redirect_to order_path(params[:client_id])
 		end
 	end
