@@ -13,6 +13,10 @@ If using Heroku for deployment:
 
 	rake figaro:heroku
 
+## Install sprocket for Heroku
+
+	heroku config:add BUILDPACK_URL=https://github.com/ndbroadbent/heroku-buildpack-turbo-sprockets.git
+
 # Changelogs
 
 ## Created template
@@ -129,3 +133,9 @@ Changed application layout into haml:
 		margin: 0 10%
 		.alert
 			margin-bottom: 0
+
+## Installed turbo-sprockets
+
+	gem 'turbo-sprockets-rails3'
+	bundle
+	gam "Installed turbo-sprockets-rails3"
