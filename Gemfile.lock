@@ -55,6 +55,9 @@ GEM
     execjs (1.4.0)
       multi_json (~> 1.0)
     ffi (1.9.0)
+    figaro (0.6.4)
+      bundler (~> 1.0)
+      rails (>= 3, < 5)
     formatador (0.2.4)
     fssm (0.2.10)
     guard (1.8.0)
@@ -162,6 +165,7 @@ DEPENDENCIES
   bootstrap-sass
   coffee-rails (~> 3.2.1)
   compass-rails
+  figaro
   guard-livereload
   haml-rails
   jquery-rails
