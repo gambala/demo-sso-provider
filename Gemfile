@@ -4,7 +4,6 @@ gem 'rails', '3.2.13'
 
 gem 'turbo-sprockets-rails3'
 gem 'puma'
-gem 'pg'
 gem 'jquery-rails'
 gem 'haml-rails'
 gem "figaro"
@@ -27,4 +26,9 @@ end
 
 group :development do
 	gem 'guard-livereload'
+	gem 'sqlite3'
+end
+
+group :production do
+	gem "pg"
 end
