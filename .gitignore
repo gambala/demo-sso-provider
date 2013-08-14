@@ -16,6 +16,7 @@
 .DS_Store
 *.sublime-project
 *.sublime-workspace
+/app/assets/images/*.xcf
 
 # Ignore application configuration
 /config/application.yml
