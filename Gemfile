@@ -8,6 +8,7 @@ gem 'pg'
 gem 'jquery-rails'
 gem 'haml-rails'
 gem "figaro"
+gem 'modernizr-rails'
 
 group :assets do
 	gem 'sass-rails',   '~> 3.2.3'
