@@ -18,4 +18,3 @@
 		client_options: {
 			site: ENV['ACCOUNTS_API_SITE']
 		}
-
